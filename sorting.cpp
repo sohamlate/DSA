@@ -42,13 +42,51 @@ void selection_sort(vector<int>&nums){
 
 }
 
+    int partition(vector<int>&nums , int s, int e){
+        int pivot = nums[s];
+        int i =s + 1;
+        int j = e;
+
+        while(i<=j){
+            if(nums[i] <= pivot){
+                i++;
+            }
+            else if(nums[j] > pivot){
+                j--;
+            }
+            else{
+                swap(nums[i] , nums[j]);
+                i++;
+                j--;
+            }
+        }
+
+      
+
+        swap(nums[s] , nums[j]);
+        return j;
+    }
+
+    void quicksort(vector<int>&nums , int s , int e){
+        if(s>= e){
+            return ;
+        }
+
+        int p = partition(nums , s, e);
+
+        quicksort(nums , s , p-1);
+        quicksort(nums , p+ 1, e);
+    }
+
+
 
 int main(){
 
     vector<int>arr = { 50,30 ,20,15,56,89,45,23,94};
     // bubble_sort(arr);
     // insertion_sort(arr);
-    selection_sort(arr);
+    // selection_sort(arr);
+    quicksort(arr , 0 ,arr.size()-1);
     for(auto ele : arr) cout<<ele<<" ";
  
     return 0;
