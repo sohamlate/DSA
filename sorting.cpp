@@ -26,12 +26,29 @@ void insertion_sort(vector<int>&nums){
         }
 }
 
+void selection_sort(vector<int>&nums){
+      int n = nums.size();
+        
+    for(int i=0;i<n-1;i++){
+        int min_index = i;
+        for(int j=i+1;j<n;j++){
+            if(nums[j] < nums[min_index]){
+                min_index = j;
+            }
+        }
+        swap(nums[i] , nums[min_index]);
+        
+    }
+
+}
+
 
 int main(){
 
     vector<int>arr = { 50,30 ,20,15,56,89,45,23,94};
     // bubble_sort(arr);
-    insertion_sort(arr);
+    // insertion_sort(arr);
+    selection_sort(arr);
     for(auto ele : arr) cout<<ele<<" ";
  
     return 0;
