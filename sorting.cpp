@@ -78,6 +78,44 @@ void selection_sort(vector<int>&nums){
         quicksort(nums , p+ 1, e);
     }
 
+    void merge(vector<int>&nums , vector<int>&temp , int s, int mid , int e){
+        int i = s;
+        int j = mid + 1;
+        int k = s;
+
+        while(i<=mid && j<=e){
+            if(nums[i] <= nums[j]) temp[k++] = nums[i++];
+            else temp[k++] = nums[j++];
+        }
+
+        while(i<=mid){
+            temp[k++] = nums[i++];
+        }
+
+        while(j<=e){
+            temp[k++] = nums[j++];
+        }
+
+        while(s<=e){
+            nums[s] = temp[s];
+            s++;
+        }
+
+    }
+
+    void mergesort(vector<int>&nums , vector<int>&temp , int s , int e){
+        if(s >= e){
+            return ;
+        }
+
+        int mid = (s + e) >>1;
+        mergesort(nums , temp , s , mid);
+        mergesort(nums , temp , mid+1 , e);
+        merge(nums , temp , s ,mid, e);
+    }
+
+
+
 
 
 int main(){
@@ -86,7 +124,9 @@ int main(){
     // bubble_sort(arr);
     // insertion_sort(arr);
     // selection_sort(arr);
-    quicksort(arr , 0 ,arr.size()-1);
+    // quicksort(arr , 0 ,arr.size()-1);
+    vector<int>temp(arr.size());
+    mergesort(arr , temp , 0 , arr.size()-1);
     for(auto ele : arr) cout<<ele<<" ";
  
     return 0;
