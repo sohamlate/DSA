@@ -143,6 +143,40 @@ void selection_sort(vector<int>&nums){
         merge(nums  , s ,mid, e);
     }
 
+     void heapify(vector<int>&nums , int index , int n){
+        int left_index = index * 2+ 1;
+        int right_index = index * 2 + 2;
+
+        int largest_index = index;
+        if(left_index <= n && nums[largest_index]  < nums[left_index] ){
+            largest_index = left_index;
+        }
+
+        if(right_index <= n && nums[largest_index] < nums[right_index]){
+            largest_index = right_index;
+        }
+
+        if(largest_index != index){
+            swap(nums[index], nums[largest_index]);
+            heapify(nums , largest_index , n);
+        }
+    }
+
+    void heapsort(vector<int>& nums){
+        int n = nums.size()-1;
+
+        for (int i = n / 2 ; i >= 0; i--) {
+            heapify(nums, i, n);
+        }
+       
+        
+        while(n!=0){
+            swap(nums[0], nums[n]);
+            n--;
+            heapify(nums , 0 ,n);
+        }
+    } 
+
 
 
 
@@ -157,7 +191,8 @@ int main(){
     // quicksort(arr , 0 ,arr.size()-1);
     // vector<int>temp(arr.size());
     // mergesort(arr , temp , 0 , arr.size()-1);
-    mergesort(arr  , 0 , arr.size()-1);
+    // mergesort(arr  , 0 , arr.size()-1);
+    heapsort(arr);
     for(auto ele : arr) cout<<ele<<" ";
  
     return 0;
