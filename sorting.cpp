@@ -114,6 +114,36 @@ void selection_sort(vector<int>&nums){
         merge(nums , temp , s ,mid, e);
     }
 
+      void merge(vector<int>&nums  , int s, int mid , int e){
+        int t = e - s + 1;
+        int gap = t /2 + t% 2;
+        
+        while(gap >0){
+            int i =s ;
+            int j = i + gap;
+            while(j<=e){
+                if(nums[i] > nums[j]){
+                    swap(nums[i] , nums[j]);
+                }
+                i++;
+                j++;
+            }
+            gap = gap <= 1 ? 0 : gap / 2 + gap % 2;
+        }
+    }
+
+    void mergesort(vector<int>&nums , int s , int e){
+        if(s >= e){
+            return ;
+        }
+
+        int mid = (s + e) >>1;
+        mergesort(nums  , s , mid);
+        mergesort(nums , mid+1 , e);
+        merge(nums  , s ,mid, e);
+    }
+
+
 
 
 
@@ -125,8 +155,9 @@ int main(){
     // insertion_sort(arr);
     // selection_sort(arr);
     // quicksort(arr , 0 ,arr.size()-1);
-    vector<int>temp(arr.size());
-    mergesort(arr , temp , 0 , arr.size()-1);
+    // vector<int>temp(arr.size());
+    // mergesort(arr , temp , 0 , arr.size()-1);
+    mergesort(arr  , 0 , arr.size()-1);
     for(auto ele : arr) cout<<ele<<" ";
  
     return 0;
