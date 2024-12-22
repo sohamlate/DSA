@@ -3,6 +3,8 @@
         "*.php": "php",
         "ostream": "cpp",
         "iostream": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp"
     }
 }
