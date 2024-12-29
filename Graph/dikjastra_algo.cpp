@@ -28,6 +28,7 @@ class Graph{
         set<pair<int , int>>s;
         s.insert({0, src});
         vector<int>dist(n, INT_MAX);
+        dist[src] =0;
 
        while(!s.empty()){
             auto top = *s.begin();
