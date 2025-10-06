@@ -24,7 +24,7 @@ class DisjointSet{
             return node;
         }
         
-        return getparent(parent[node]);
+        return parent[node] = getparent(parent[node]);
     }
     
     void unionbyrank(int u , int v){
