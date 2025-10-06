@@ -17,6 +17,34 @@ class Graph{
             adj[v].push_back({u , wt});
         }
     }
+    
+    void dijkstra_pq(int src, int dest, int n) {
+        vector<int> dist(n, INT_MAX);
+        dist[src] = 0;
+    
+        // min-heap priority queue: {distance, node}
+        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+        pq.push({0, src});
+    
+        while(!pq.empty()) {
+            auto [d, u] = pq.top();
+            pq.pop();
+    
+            // if current distance > stored distance, skip
+            if(d > dist[u]) continue;
+    
+            for(auto [v, wt] : adj[u]) {
+                if(dist[u] + wt < dist[v]) {
+                    dist[v] = dist[u] + wt;
+                    pq.push({dist[v], v});
+                }
+            }
+        }
+    
+        cout << "\nShortest distance from " << src 
+             << " to " << dest << " is " << dist[dest] << "\n";
+    }
+
 
   
 
