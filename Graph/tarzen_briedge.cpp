@@ -28,7 +28,8 @@ public:
                 }
             }
             else{
-                low[src] = min(low[src] , low[nbr]);
+                low[src] = min(low[src] , tin[nbr]);
+                // low[src] = min(low[src] , low[nbr]); // both works
             }
         }
 
